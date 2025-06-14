@@ -17,5 +17,12 @@
     "url": "https://github.com/Aldho666-tech/kp-backend/issues"
   },
   "homepage": "https://github.com/Aldho666-tech/kp-backend#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "exceljs": "^4.4.0",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1"
+  }
 }
