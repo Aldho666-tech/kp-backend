@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('Gif (3).gif') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Wrapper untuk logo + form */
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 20px;
+  text-shadow: #000000; /* This might not have a visible effect without more properties */
+  box-shadow: #000000;  /* This might not have a visible effect without more properties */
+}
+
+/* Logo container */
+.logo-container {
+  margin-bottom: 60px;
+  margin-top: -60px;
+  animation: floatLogo 2s ease-in-out infinite;
+}
+
+/* Logo style */
+.logo-glow {
+  width: 300px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #00f0ff) drop-shadow(0 0 20px #00f0ff);
+  animation: glowPulse 2s infinite alternate;
+}
+
+@keyframes floatLogo {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Animasi glow logo */
+@keyframes glowPulse {
+  from {
+    filter: drop-shadow(0 0 10px #00eeff77) drop-shadow(0 0 10px #00eeff77);
+  }
+  to {
+    filter: drop-shadow(0 0 10px #00eeff77) drop-shadow(0 0 10px #00eeff77);
+  }
+}
+
+.login-card {
+  background: rgba(44, 47, 51, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  display: flex;
+  flex-direction: column; /* Added to ensure children stack vertically as intended by inner .form-section */
+  padding: 25px; /* Was 30px, then 25px in another rule, unified to 25px based on the animated version */
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%; /* Was 90% then 100%, kept 90% from the first rule block */
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,255,255,0.5), 0 0 40px rgba(0,255,255,0.3);
+  animation: glow 2s infinite alternate, fadeSlideUp 1s ease forwards; /* Combined animations */
+  text-align: left; /* Added from the animated .login-card rule */
+}
+
+/* Efek Glow Futuristik */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px rgba(0,255,255,0.5), 0 0 20px rgba(0,255,255,0.3);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0,255,255,0.8), 0 0 60px rgba(0,255,255,0.5);
+  }
+}
+
+/* Neon Border bergerak */
+.login-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 100%; /* This might need to be 200% if using -50% top/left for full coverage during rotation */
+  height: 100%;/* This might need to be 200% */
+  background: linear-gradient(45deg, ff0000, #ff0000, #00f0ff, #ff0000);
+  background-size: 400% 400%;
+  animation: neonBorder 10s linear infinite;
+  z-index: 1;
+  opacity: 0.2;
+}
+
+/* Supaya form tidak ketimpa border */
+.login-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Animasi Border */
+@keyframes neonBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Warna teks Selamat Datang */
+.login-card h2 {
+  color: #ff0000; /* Cyan / Neon Blue (comment says cyan, code is red) */
+  margin-top: 20px; /* Adjusted from 50px for better balance, original was 0 in another rule for .form-section h2 */
+  margin-bottom: 10px; /* Added for spacing */
+}
+
+/* Warna teks paragraf sambutan */
+.login-card p {
+  color: #ffffff; /* Was #ff0000 (red), changed to white for better readability on dark bg, then #ffffff */
+  font-size: 14px; /* Consistent with .form-section p */
+  margin-bottom: 15px; /* Added for spacing */
+}
+
+.form-section {
+  flex: 1;
+}
+
+.form-section p { /* This rule was a bit redundant with .login-card p, but kept for specificity if needed */
+  color: #ffffff;
+  font-size: 14px;
+  /* border-top: 5px; This is not a valid CSS property */
+}
+
+input[type="text"], input[type="password"] {
+  width: 95%; /* Consider width: calc(100% - 22px); if you want padding included in 100% */
+  padding: 10px;
+  margin: 8px 0 16px;
+  background: #333436;
+  border: 1px solid #72767d;
+  border-radius: 5px;
+  color: white;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #ff0000;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Added transition */
+}
+
+button:hover {
+  background: #cc0000; /* Darken on hover */
+}
+
+a {
+  color: #ff0000;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.register-text {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #aaa; /* Original color */
+}
+
+/* .qr-section and related styles were present but not used in index.html, removed for tidiness */
+/* If you plan to use them, they can be added back. */
+
+/* .navbar, .content, .profile-card styles were present but not used in index.html, removed for tidiness */
+
+html, body { /* This rule was duplicated */
+  height: 100%;
+  margin: 0; /* Already in body reset */
+  display: flex; /* Already in body */
+  flex-direction: column; /* Already in body */
+}
+
+.login-container { /* This class is not used in index.html */
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer {
+  background-color: #9601016c;
+  color: #fff;
+  text-align: center;
+  padding: -9px 0; /* Adjusted padding from -10px */
+  width: 100%; /* Ensure footer spans full width */
+}
+
+/* loading spinner kecil di dalam tombol */
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-left: 8px;
+  vertical-align: middle;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* tombol disabled agar tidak diklik berulang */
+#loginButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

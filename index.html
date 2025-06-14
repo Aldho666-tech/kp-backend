@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Kp Rute</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="login-wrapper">
+
+    <div class="logo-container">
+      <img src="logo.png" alt="Logo Kp Rute" class="logo-glow">
+    </div>
+
+    <div class="login-card">
+      <div class="form-section">
+
+        <h2>Selamat Datang!</h2>
+        <p>Semangat Kerjanya, yuk budayakan absen tepat waktu!</p>
+
+        <form onsubmit="login(event); return false;">
+          <label for="username">Username</label><br>
+          <input type="text" id="username" required><br>
+
+          <label for="password">Password</label><br>
+          <input type="password" id="password" required><br>
+
+          <a href="#">Lupa Password?</a><br>
+
+          <button type="submit" id="loginButton">
+            <span id="buttonText">LOGIN</span>
+            <span id="loadingSpinner" class="spinner" style="display:none;"></span>
+          </button>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Angkasa Express.</p>
+      <p><a href="#">Kebijakan Privasi</a> | <a href="#">Syarat & Ketentuan</a></p>
+    </div>`
+  </footer>
+
+  <script src="login.js"></script>
+
+</body>
+</html>

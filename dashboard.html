@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Tautan ke file CSS eksternal -->
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="profile-picture">
+                    <img src="Admin-Avatar.png" alt="Profile Sidebar"> 
+                </div>
+                <div class="welcome-text">
+                    <h2 id="sidebar-user-name">Nama Pengguna</h2>
+                    <p>Semangat Kerjanya!</p>
+                </div>
+            </div>
+
+            <ul class="menu">
+                <li data-tab="profile">
+                    <i class="fas fa-user"></i> <span>Profile</span>
+                </li>
+                <li data-tab="password">
+                    <i class="fas fa-lock"></i> <span>Ubah Password</span>
+                </li>
+                <li data-tab="kehadiran" class="active-menu">
+                    <i class="fas fa-calendar-check"></i> <span>Kehadiran</span>
+                </li>
+                <li data-tab="rekapAbsensi">
+                    <i class="fas fa-clipboard-list"></i> <span>Rekap Absensi</span>
+                </li>
+            </ul>
+
+            <button class="logout-btn" id="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+            </button>
+        </div>
+
+        <div class="main-content">
+            <div class="topbar">
+                <button id="toggleSidebar" aria-label="Toggle Sidebar"><i class="fas fa-bars"></i></button>
+                <button id="toggleDarkMode" aria-label="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+            </div>
+
+            <div id="profile" class="tab-content">
+                <h1>Profil Saya</h1>
+                <div class="profile-layout">
+                    <div class="profile-left-column">
+                        <div class="card">
+                            <div class="profile-main-image-container">
+                                <img src="Admin-Avatar.png" alt="Foto Profil Utama" id="mainProfilePic"> 
+                                <input type="file" id="uploadProfilePic" style="display: none;" accept="image/*">
+                            </div>
+                            <div class="profile-photo-actions">
+                               <button class="btn btn-red-outline" id="changePhotoBtn" style="width:100%"><i class="fas fa-camera"></i> Ganti Foto</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-right-column">
+                        <form id="profileForm" class="card">
+                            <h3>Informasi Akun</h3>
+                            <div class="info-group">
+                                <label for="profileNama">Nama Lengkap</label>
+                                <input type="text" id="profileNama" readonly>
+                            </div>
+                            <div class="info-group">
+                                <label for="profileEmail">Email</label>
+                                <input type="email" id="profileEmail" readonly>
+                            </div>
+                            <div class="info-group">
+                                <label for="profileTelepon">No. Telepon</label>
+                                <input type="tel" id="profileTelepon" readonly>
+                            </div>
+                            <div class="profile-form-actions">
+                                <button type="button" class="btn btn-grey" id="cancelProfileBtn" style="display: none;">Batal</button>
+                                <button type="submit" id="saveProfileBtn" class="btn btn-red" style="display: none;"><i class="fas fa-save"></i> Simpan</button>
+                                <button type="button" class="btn btn-red" id="editProfileBtn"><i class="fas fa-edit"></i> Edit Profile</button>
+                            </div>
+                        </form> 
+                    </div>
+                </div>
+            </div>
+
+            <div id="password" class="tab-content">
+                 <div class="card" style="max-width: 500px; margin: auto;">
+                    <h3>Ubah Password</h3>
+                    <form class="password-form" onsubmit="return false;">
+                        <div class="info-group">
+                            <label for="oldPassword">Password Lama</label>
+                            <input type="password" id="oldPassword" required>
+                        </div>
+                         <div class="info-group">
+                            <label for="newPassword">Password Baru</label>
+                            <input type="password" id="newPassword" required>
+                        </div>
+                         <div class="info-group">
+                            <label for="confirmNewPassword">Konfirmasi Password Baru</label>
+                            <input type="password" id="confirmNewPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-red" style="width:100%;">Simpan Password</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="kehadiran" class="tab-content active">
+                 <div class="card">
+                     <div class="kehadiran">
+                        <div class="camera-container">
+                            <video id="video" playsinline muted class="camera-off"></video>
+                             <div class="camera-controls" style="margin-top: 15px;">
+                                <button id="toggleCameraButton" class="btn btn-grey">
+                                  <i class="fas fa-video"></i> <span>Nyalakan Kamera</span>
+                                </button>
+                            </div>
+                        </div>
+                         <div id="realtime-location" style="margin: 20px 0;">Deteksi lokasi...</div>
+                         <div class="absen-buttons">
+                             <button id="clockInButton" class="btn btn-red"><i class="fas fa-sign-in-alt"></i> Masuk</button>
+                             <button id="clockOutButton" class="btn btn-red-outline"><i class="fas fa-sign-out-alt"></i> Pulang</button>
+                         </div>
+                         <canvas id="snapshot" style="display:none;"></canvas>
+                         <div class="riwayat-container">
+                             <h3 style="text-align:center; border:none; margin-top:30px;">Riwayat Kehadiran Hari Ini</h3>
+                             <div id="riwayatContainer" class="riwayat-list"></div>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+
+            <div id="rekapAbsensi" class="tab-content">
+                <h1>Rekapitulasi Absensi</h1>
+                <div class="card">
+                     <div class="rekap-filter">
+                         <label for="bulanRekap">Pilih Bulan:</label>
+                         <input type="month" id="bulanRekap" name="bulanRekap">
+                         <button class="btn btn-red-outline" id="tampilkanRekapBtn">Tampilkan</button>
+                     </div>
+                </div>
+                <div class="card rekap-detail-list">
+                     <h2>Detail Kehadiran</h2>
+                     <ul id="detailRekapList"></ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Tautan ke file JavaScript eksternal -->
+    <script src="dashboard.js"></script>
+</body>
+</html>
